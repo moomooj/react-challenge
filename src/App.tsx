@@ -1,19 +1,22 @@
-function MyButton() {
-  return <button>I'm a button</button>;
-}
+const user = {
+  name: "Hedy Lamarr",
+  imageUrl: "https://i.imgur.com/yXOvdOSs.jpg",
+  imageSize: 90,
+};
 
 export function App() {
   return (
     <>
-      {/* 빈 태그로 감싸기 */}
-      <div className="avatar">
-        {/* 클래스 추가 */}
-        <h1>Welcome to my app</h1>
-      </div>
-      <div className="avatar"></div>
-      <div className="avatar"></div>
-      <div className="avatar"></div>
-      <div className="avatar"></div>
+      <h1>{user.name}</h1>
+      <img
+        className="avatar"
+        src={user.imageUrl}
+        alt={"Photo of " + user.name}
+        style={{
+          width: user.imageSize,
+          height: user.imageSize,
+        }}
+      />
     </>
   );
 }
