@@ -1,17 +1,15 @@
 import { useContext } from "react";
-import { UserContext } from "./UserContext";
+import { LoggedInContext, LoggedInDispatchContext } from "./UserContext";
 
 const Children = () => {
-  const { setLoading, setLoggedIn } = useContext(UserContext);
+  const task = useContext(LoggedInContext);
+  const dispatch = useContext(LoggedInDispatchContext);
 
   return (
     <>
-      <button onClick={() => setLoading((prev: boolean) => !prev)}>
-        로딩토글
-      </button>
-      <button onClick={() => setLoggedIn((prev: boolean) => prev)}>
-        로딩토글
-      </button>
+      <button onClick={() => dispatch({ type: "error" })}>에러 버튼</button>
+      <button onClick={() => dispatch({ type: "success" })}>로그인 버튼</button>
+      <div>{task.loggedIn ? "로그인" : "로그인 안됨"}</div>
     </>
   );
 };

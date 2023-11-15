@@ -1,11 +1,10 @@
 import { createContext } from "react";
+import { Action } from "./FirstReducec";
 
-export type GlobalContent = {
-  setLoggedIn: (_value: boolean) => void;
-  setLoading: (_value: boolean) => void;
-};
-
-export const UserContext = createContext<GlobalContent>({
-  setLoggedIn: () => {},
-  setLoading: () => {},
+export const LoggedInContext = createContext({
+  loggedIn: false,
 });
+
+export const LoggedInDispatchContext = createContext<React.Dispatch<Action>>(
+  () => {}
+);
