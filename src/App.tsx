@@ -3,8 +3,8 @@ import Parent from "./Parent";
 import { UserContext } from "./UserContext";
 
 const GrandParent = () => {
-  const [loggedIn, setLoggedIn] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [loggedIn, setLoggedIn] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
   const value = useMemo(
     () => ({ setLoggedIn, setLoading }),
     [setLoggedIn, setLoading]
