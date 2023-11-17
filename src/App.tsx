@@ -1,18 +1,30 @@
-import { useReducer } from "react";
-import { checkLoginReducer } from "./FirstReducec";
-import Parent from "./Parent";
-import { LoggedInContext, LoggedInDispatchContext } from "./UserContext";
+import { useState, useRef, useEffect } from "react";
 
-const GrandParent = () => {
-  const initial = { loggedIn: false };
-  const [loggedIn, dispatch] = useReducer(checkLoginReducer, initial);
+function VideoPlayer({ src, isPlaying }) {
+  const ref = useRef(null);
 
+  useEffect(() => {
+    if (isPlaying) {
+      ref.current.play();
+    } else {
+      ref.current.pause();
+    }
+  });
+
+  return <video ref={ref} src={src} loop playsInline />;
+}
+
+export default function App() {
+  const [isPlaying, setIsPlaying] = useState(false);
   return (
-    <LoggedInContext.Provider value={loggedIn}>
-      <LoggedInDispatchContext.Provider value={dispatch}>
-        <Parent />
-      </LoggedInDispatchContext.Provider>
-    </LoggedInContext.Provider>
+    <>
+      <button onClick={() => setIsPlaying(!isPlaying)}>
+        {isPlaying ? "Pause" : "Play"}
+      </button>
+      <VideoPlayer
+        isPlaying={isPlaying}
+        src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
+      />
+    </>
   );
-};
-export default GrandParent;
+}
